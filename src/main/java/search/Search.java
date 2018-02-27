@@ -2,22 +2,18 @@ package search;
 
 import Service.Helper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import java.util.List;
 
 public class Search {
 
     protected String query;
     protected String searcherName;
     protected String nameForFindResults;
+    protected String tagName;
 
     public void setQuery(String query){
         this.query = query;
     }
-
-
-
 
     public String getSearcherName(){
         return searcherName;
@@ -30,14 +26,9 @@ public class Search {
     protected WebElement findElementsByTagName(){
         inputQuery();
         Helper.switchWindow();
-        List<WebElement> elementList = Helper.driver.findElements(By.tagName("b"));
-        for (WebElement el : elementList){
-            if (el.getText().equals("performance-lab.ru")) {
-                el.click();
-                return el;
-            }
-        }
-        return null;
+        WebElement element = Helper.driver.findElement(By.xpath(tagName));
+        element.click();
+        return element;
     }
 
     protected void inputQuery(){

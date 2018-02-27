@@ -2,6 +2,7 @@ import SearchInPerformance.PerfSearch;
 import Service.Helper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import search.*;
 
 import java.util.HashMap;
@@ -13,8 +14,8 @@ public class SeleniumTest {
 
     static {
         searchMap.put("yandex", new YandexSearch());
-//        searchMap.put("google", new GoogleSearch());
-//        searchMap.put("rambler", new RamblerSearch());
+        searchMap.put("google", new GoogleSearch());
+        searchMap.put("rambler", new RamblerSearch());
     }
 
     public static void main(String[] args){
