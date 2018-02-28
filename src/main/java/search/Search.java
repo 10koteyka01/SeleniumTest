@@ -11,6 +11,13 @@ public class Search {
     protected String nameForFindResults;
     protected String tagName;
 
+    public Search(String... parameters) {
+        searcherName = parameters[0];
+        query = parameters[1];
+        nameForFindResults = parameters[2];
+        tagName = parameters[3];
+    }
+
     public void setQuery(String query){
         this.query = query;
     }
@@ -35,6 +42,10 @@ public class Search {
         Helper.driver.get("https://"+ searcherName + ".ru/");
         WebElement element = Helper.driver.findElement(By.xpath(nameForFindResults));
         element.sendKeys(query);
-        element.submit();
+        if (searcherName.equals("rambler")){
+            element = Helper.driver.findElement(By.xpath("//button[@data-cerber-head='main::search::button']"));
+            element.click();
+        } else
+            element.submit();
     }
 }
